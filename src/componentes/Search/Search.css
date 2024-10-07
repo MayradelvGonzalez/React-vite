@@ -1,0 +1,25 @@
+img{
+    border-radius: 20px;
+    border: 0.3px black solid;
+    
+}
+
+.busqueda{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.resultado{
+    padding-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+}
+.resultado .cont{
+    margin: 10px;
+}
+.cont img:hover{
+    box-shadow: 0 0 70px #4695a9;
+    transition: 0.5s;
+}

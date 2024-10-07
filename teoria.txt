@@ -1,0 +1,43 @@
+Hook 
+Es una funcion, que permite controlar el estado de un componente y acceder a su ciclo de vida. 
+UseState: 
+- Devuelve dos valores, uno para la actualizacion del valor y otro para leer el valor actual.
+import React, { useState } from 'react';
+
+function ExampleComponent() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+UseEffect
+useEffect es una función que se utiliza para realizar operaciones despues de renderizar o cuando cambia algun valor en el DOM
+import React, { useState, useEffect } from 'react';
+
+function ExampleComponent() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Realizar alguna operación al montar o actualizar el componente
+    fetchData();
+  }, []); // El array vacío significa que este efecto se ejecuta solo al montar o desmontar
+
+  const fetchData = async () => {
+    // Lógica para obtener datos, por ejemplo, una llamada a la API
+    const result = await apiCall();
+    setData(result);
+  };
+
+  return (
+    <div>
+      {/* Renderizar componentes utilizando los datos */}
+    </div>
+  );
+}
+Instalacion de axios para las llamadas a la api

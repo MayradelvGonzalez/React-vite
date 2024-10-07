@@ -1,0 +1,67 @@
+.bg-body-tertiary{
+    background:linear-gradient(80deg, #9094B3 
+    ,#328068 );
+}
+
+.bg-body-tertiary .texto{
+    font-size: 26px;
+    font-weight: 700;
+}
+
+
+
+.bg-body-tertiary .texto-costum{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+
+.bg-body-tertiary .desplegable:hover{
+    background: linear-gradient(80deg,#90b3a3,#328068 );
+    
+    
+}
+
+
+.texto-costum{
+    position: relative;
+} 
+
+
+
+.texto-costum:after{
+    content:"";
+    width: 0;
+    height: 4px;
+    background-color: #8FBC8F;
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transition: all 0.5s;
+     will-change: width; 
+}
+
+.texto-costum:hover:after{
+    width: 100%;
+    right:0;
+}  
+
+.d-flex .btn{
+    background-color:#0d27ec  ;
+    color: white;
+}
+
+.d-flex .btn:active{
+    background-color:#4695a9  ;
+    color: white;
+}
+
+
+
+@media all and (max-width: 991px){
+.d-flex {
+    margin-top: 25px;
+    margin-bottom: 8px;
+}
+}

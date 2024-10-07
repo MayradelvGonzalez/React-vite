@@ -1,0 +1,11 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+:root{
+  --color-uno:rgb(211, 151, 23);
+  --color-dos:white;
+  --color-tres:rgb(55, 118, 55);
+  --color-cuatro:rgb(17, 83, 31);
+}
