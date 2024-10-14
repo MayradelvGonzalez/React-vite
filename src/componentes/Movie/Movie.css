@@ -12,6 +12,7 @@
     margin: 100px auto;
     background-color:aquamarine;
 
+
 }
 
 .card{
@@ -31,6 +32,7 @@
     padding: 15px;
     background-color: #9094B3;
     margin: 2em;
+object-fit: contain;
     
 }
 
