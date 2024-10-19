@@ -1,56 +1,58 @@
-
-// import React, { useState } from 'react';
-// import Movie from './componentes/Movie/Movie';
-// import Search from './componentes/Search/Search';
-// function App() {
-//   const [movieList, setMovieList] = useState([]);
-
-//   // Función para actualizar el estado de movieList
-//   const updateMovieList = (movies) => {
-//     setMovieList(movies);
-//   };
-
-//   // Función para manejar los resultados de la búsqueda
-//   const handleSearchResults = (results) => {
-//     // Puedes realizar cualquier lógica adicional aquí si es necesario
-//     console.log('Resultados de búsqueda:', results);
-//   };
-
-//   return (
-//     <div>
-//       <Search movieList={movieList} onSearch={handleSearchResults} />
-//       <Movie onUpdateMovieList={updateMovieList} />
-      
-//     </div>
-//   );
-// }
-
-// export default App;
-// App.jsx
-import React, { useState } from 'react';
+import React from 'react'
 import Movie from './componentes/Movie/Movie';
-import Search from './componentes/Search/Search';
-
+import NavBar from './componentes/Navbar/Navbar.jsx';
+import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom'
+import Details from './componentes/Details/Details.jsx';
+import Favorite from './componentes/Favorite/Favorite.jsx'
+import { useNavigate } from 'react-router-dom';
 function App() {
-  const [movieList, setMovieList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [modoBusqueda, setModoBusqueda] = useState(false);
+  const [genero, setGenero ] = useState ('');
+  const apiKey = 'b210be581879151ace076e5b138fc414';
+  const navigate = useNavigate()
+  const handleSearch = () => {
+    if (searchQuery === '') {
+      return;
+    }
 
-  // Función para actualizar el estado de movieList
-  const updateMovieList = (movies) => {
-    setMovieList(movies);
-  };
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchQuery}`)
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+        return setSearchResults(json.results)
+      })
+      .catch(error => console.error('Error fetching data:', error));
 
-  // Función para manejar los resultados de la búsqueda
-  const handleSearchResults = (results) => {
-    setSearchResults(results);
+    setModoBusqueda(true);
+    navigate('/')
   };
 
   return (
-    <div>
-      <Search movieList={movieList} onSearch={handleSearchResults} />
-      <Movie onUpdateMovieList={updateMovieList} searchResults={searchResults} />
-    </div>
-  );
+    <>
+      <NavBar
+        handleSearch={handleSearch}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        setModoBusqueda={setModoBusqueda}
+        setGenero={setGenero}
+      />
+
+      <Routes>
+        <Route path="/" element={(<Movie
+          searchResults={searchResults}
+          searchQuery={searchQuery}
+          modoBusqueda={modoBusqueda}
+          genero={genero}
+        />)} />
+        
+        <Route path="/details/:movieId" element={<Details />} />
+        <Route path="/favoritos" element={<Favorite />} />
+      </Routes>
+    </>
+  )
 }
 
 export default App;

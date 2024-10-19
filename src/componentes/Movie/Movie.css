@@ -7,10 +7,12 @@
 
 .container{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    /* align-items: justify-content; */
     flex-wrap: wrap;
     margin: 100px auto;
     background-color:aquamarine;
+
 
 
 }
@@ -19,6 +21,7 @@
     box-shadow: 0 0 5px 5px #9094B3;
     position: absolute;
     margin: 2em;
+    width: 260px;
   
 }
 .card:hover{
@@ -29,7 +32,7 @@
 
 } 
 .container img{
-    padding: 15px;
+    padding: 10px;
     background-color: #9094B3;
     margin: 2em;
 object-fit: contain;
@@ -41,4 +44,5 @@ object-fit: contain;
     text-align: center;
     font-weight: 600;
     font-size: 20px;
+    background-color:gray;
 }

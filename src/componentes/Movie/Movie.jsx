@@ -1,107 +1,76 @@
-// Movie.jsx
-// import React, { useState, useEffect } from 'react';
-
-// function Movie({ onUpdateMovieList }) {
-   
-//   const [movieList, setMovieList] = useState([]);
-//   const apiKey = 'b210be581879151ace076e5b138fc414';
-
-//   const getMovies = (query) => {
-//     const url = query
-//       ? `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
-//       : `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
-
-//     fetch(url)
-//       .then((response) => response.json())
-//       .then((json) => {
-//         setMovieList(json.results);
-//         onUpdateMovieList(json.results); // Actualiza también el estado en App
-//       })
-//       .catch((error) => console.error('Error fetching data:', error));
-//   };
-
-//   useEffect(() => {
-//     getMovies();
-//   }, []);
-
-//   return (
-//     <>
-//       <div className='bienvenida'>
-//         <h1>Disfruta de todo tipo de Películas aquí en SpaceMovie.</h1>
-//         <h1>Te Damos la Bienvenida.</h1>
-//       </div>
-
-//       <div className='container'>
-//         {movieList.map((movie) => (
-//           <div className='card' key={movie.id}>
-//             <img
-//               style={{ width: '300px', height: '350px' }}
-//               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-//               alt=""
-//             />
-//             <p>{movie.title}</p>
-//           </div>
-//         ))}
-//       </div>
-//     </>
-//   );
-// }
-
-// export default Movie;
-// Movie.jsx
 import React, { useState, useEffect } from 'react';
-import '../Movie/Movie.css';
-function Movie({ onUpdateMovieList, searchResults }) {
-  const [movieList, setMovieList] = useState([]);
-  const apiKey = 'b210be581879151ace076e5b138fc414';
+import './Movie.css';
+import { NavLink } from 'react-router-dom';
 
-  const getMovies = (query) => {
-    const url = query
-      ? `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
-      : `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
+function Movie({ searchResults, searchQuery, modoBusqueda, genero }) {
+    const [movieList, setMovieList] = useState([]);
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((json) => {
-        setMovieList(json.results);
-        onUpdateMovieList(json.results);
-      })
-      .catch((error) => console.error('Error fetching data:', error));
-  };
+    const apiKey = 'b210be581879151ace076e5b138fc414';
 
-  useEffect(() => {
-    getMovies();
-  }, []);
+    const getMovie = () => {
+        console.log(genero);
+        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genero}`)
+            .then(response => response.json())
+            .then(json => setMovieList(json.results))
+            .catch(error => console.error('Error fetching data:', error));
+    };
 
-  useEffect(() => {
-    // Llama a la función onUpdateMovieList solo cuando no haya resultados de búsqueda
-    if (searchResults.length === 0) {
-      onUpdateMovieList(movieList);
-    }
-  }, [searchResults, movieList, onUpdateMovieList]);
+    useEffect(() => {
+        if (!modoBusqueda) {
+            getMovie();
+        }
+    }, [modoBusqueda]);
 
-  return (
-    <>
-      <div className='bienvenida'>
-        <h1>Disfruta de todo tipo de Películas aquí en SpaceMovie.</h1>
-        <h1>Te Damos la Bienvenida.</h1>
-      </div>
+    useEffect(() => {
+        getMovie();
+    }, [genero]);
 
-      <div className='container'>
-        {/* Mostrar solo cuando no hay resultados de búsqueda */}
-        {searchResults.length === 0 && movieList.map((movie) => (
-          <div className='card' key={movie.id}>
-            <img
-              style={{ width: '300px', height: '350px' }}
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt=""
-            />
-            <p>{movie.title}</p>
-          </div>
-        ))}
-      </div>
-    </>
-  );
+
+    return (
+        <>
+
+            {modoBusqueda === false ?
+                <div className='bienvenida'>
+                    <h1 className='titulo-bienvenida'>Todo el cine!</h1>
+                    {/* <h1 className='titulo-bienvenida'>Te Damos la Bienvenida.</h1> */}
+                </div> : <div></div>}
+
+            <div className='container'>
+                {
+                    searchResults.length === 0 && searchQuery.length !== 0 && modoBusqueda ? <p>No se encontraron películas con ese nombre.</p> : null
+                }
+                {
+                    !modoBusqueda ? movieList.map((movie) => (
+                        <NavLink key={movie.id} style={{ textDecoration: 'none' }} className="titulo-movie" to={`/details/${movie.id}`}>
+                            <div className='card'>
+
+                                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                    alt=""
+                                />
+                                <p className='titulo-movie'>{movie.title}</p>
+
+                            </div>
+                        </NavLink>
+                    )) : searchResults.map((movie) => (
+                        <NavLink key={movie.id} style={{ textDecoration: 'none' }} to={`/details/${movie.id}`}>
+                            <div className='card'>
+
+                                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                    alt=""
+                                />
+                                <p className='titulo-movie'>{movie.title}</p>
+
+                            </div>
+                        </NavLink>
+                    ))
+                }
+            </div>
+
+            
+        </>
+    );
 }
 
 export default Movie;
+
+
