@@ -1,29 +1,28 @@
 .bienvenida{
     margin-top: 50px;
     margin-left: 80px;
-    /* border: 2px 2px black; */
+    font-family:cursive
 }
 
 
 .container{
     display: flex;
     justify-content: space-between;
-    /* align-items: justify-content; */
     flex-wrap: wrap;
     margin: 100px auto;
-    background-color:aquamarine;
-
+    background-color:yellowgreen;
+border-radius:1.5em;
 
 
 }
 
 .card{
-    box-shadow: 0 0 5px 5px #9094B3;
+    box-shadow: 0 0 5px 5px #b3b090;
     position: absolute;
     margin: 2em;
     width: 260px;
-  
 }
+
 .card:hover{
   background-color: #9094B3;
       border: whitesmoke 0.1em solid;
@@ -44,5 +43,6 @@ object-fit: contain;
     text-align: center;
     font-weight: 600;
     font-size: 20px;
-    background-color:gray;
+    font-family:cursive;
+    /* background-color:gray; */
 }

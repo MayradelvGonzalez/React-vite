@@ -9,6 +9,7 @@
     height: fit-content; 
     margin: 50px auto;
     box-shadow: 0 2px 5px 5px var(--color-uno);
+    font-family: cursive;
 }
 
 .background {
@@ -37,7 +38,6 @@
     /* Esta propiedad de css me garantiza que el contenido de este div 
     se muestre por encima de la imagen de fondo */
     padding-right: 10px;
-    
 }
 
 
@@ -50,7 +50,7 @@
 p {
     font-size: 18px;
     font-weight: 600;
-    text-decoration: dashed;
+    
 }
 
 .date {
@@ -100,11 +100,11 @@ p {
 
 .heart{
     width: 18px;
+    
 }
 
 .creator {
     display: flex;
-   
     justify-content: space-around;
     margin-top: 22px;
 }
@@ -113,8 +113,11 @@ p {
     width: 90%;
     margin: 50px auto;
     height: fit-content;
-    box-shadow: 0 2px 5px 5px var(--color-uno);
+    box-shadow: 0 2px 5px 5px gray;
+    background-color:gray;
     padding-top: 10px;
+    font-family: cursive;
+    border-radius: 1em;
 }
 
 
@@ -123,13 +126,12 @@ p {
     width: 140px;
     height: 160px;
     object-fit: cover;
-
+border-radius:5em;
 }
 
 .personas p {
     text-align: center;
     font-size: 16px;
-
 }
 
 .personas h4 {
@@ -138,8 +140,8 @@ p {
 }
 
 .people {
-    box-shadow: 0 2px 5px 5px var(--color-uno);
-    border: 2px solid var(--color-uno);
+    box-shadow: 0 2px 5px 5px gray;
+    border: 2px solid white;
     width: 200px;
     margin: 10px auto;
 
