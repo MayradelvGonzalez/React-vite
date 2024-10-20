@@ -1,14 +1,14 @@
 .container-details {
     position: relative;
-    background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: rgba(0, 0, 0, 0.5); */
 
     /* color: var(--color-texto); */
-    color:white;
+    color:black;
     display: flex;
     width: 90%;
     height: fit-content; 
     margin: 50px auto;
-    box-shadow: 0 2px 5px 5px var(--color-uno);
+    box-shadow: 0 2px 5px 5px gray;
     font-family: cursive;
 }
 
@@ -117,7 +117,7 @@ p {
     background-color:gray;
     padding-top: 10px;
     font-family: cursive;
-    border-radius: 1em;
+    border-radius: 0.1em;
 }
 
 
@@ -126,7 +126,7 @@ p {
     width: 140px;
     height: 160px;
     object-fit: cover;
-border-radius:5em;
+    border-radius:5em;
 }
 
 .personas p {
@@ -144,6 +144,7 @@ border-radius:5em;
     border: 2px solid white;
     width: 200px;
     margin: 10px auto;
+    border:0.3em outset white;
 
 }
 

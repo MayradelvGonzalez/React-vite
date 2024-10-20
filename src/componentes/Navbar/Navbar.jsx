@@ -12,6 +12,7 @@ import { useState } from 'react';
 
 function NavScrollExample({ handleSearch, searchQuery, setSearchQuery, setModoBusqueda, setGenero}) {
 const [isFocused, setIsFocused] = useState(false);
+const [selectedGenre, setSelecterGenre] = useState('');
 
 const handleFocus = (e) => {
   setIsFocused(true);
@@ -27,13 +28,16 @@ const handleFocus = (e) => {
     setSearchQuery('');
     setModoBusqueda(false);
     setGenero('');
+    setSelecterGenre('');
   }
 
   function cambiarGenero(generoId) {
     setGenero(generoId);
     setModoBusqueda(false);
     setSearchQuery('');
-    navigate('/')
+    navigate('/');
+    setSelecterGenre(generoName);
+
   }
 
   return (
@@ -43,7 +47,7 @@ const handleFocus = (e) => {
         <img style={{width:'45px'}} src={iconoCinema} alt='imagenIcono'/>
         </NavLink>
         <NavLink style={{textDecoration:'none'}}  to='/'>
-        <Navbar.Brand onClick={handleClick} className="texto">MOVIES</Navbar.Brand>
+        <Navbar.Brand onClick={handleClick} className="texto">Moviesmania</Navbar.Brand>
         </NavLink>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -53,7 +57,7 @@ const handleFocus = (e) => {
             navbarScroll
           >
             <Nav.Link className="texto-costum">
-              <NavLink onClick={handleClick} to="/"  style={{color:"black", textDecoration:'none'}}>Home</NavLink>
+              <NavLink onClick={handleClick} to="/"  style={{color:"black", textDecoration:'none'}} title={selectedGenre || "Categorias"}>Home</NavLink>
             </Nav.Link>
             
 
@@ -61,41 +65,40 @@ const handleFocus = (e) => {
              title="Categorías"
              className="texto-costum" 
               id="navbarScrollingDropdown">
-               
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => cambiarGenero('35')} href="#action2" className='desplegable'>
+              <NavDropdown.Item onClick={() => cambiarGenero('35', 'Comedias')} href="#action2" className='desplegable'>
                 Comedias
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => cambiarGenero('10749')} href="#action3" className='desplegable'>
+              <NavDropdown.Item onClick={() => cambiarGenero('10749', 'Romance')} href="#action3" className='desplegable'>
                 Romance
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => cambiarGenero('28')}  href="#action4" className='desplegable'>
+              <NavDropdown.Item onClick={() => cambiarGenero('28', 'Acción')}  href="#action4" className='desplegable'>
                 Acción
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => cambiarGenero('18')} href="#action5" className='desplegable'>
+              <NavDropdown.Item onClick={() => cambiarGenero('18', 'Drama')} href="#action5" className='desplegable'>
                 Drama
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => cambiarGenero('10751')}  href="#action6" className='desplegable'>
+              <NavDropdown.Item onClick={() => cambiarGenero('10751', 'Familiares')}  href="#action6" className='desplegable'>
                 Familiares
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => cambiarGenero('14')} href="#action7" className='desplegable'>
+              <NavDropdown.Item onClick={() => cambiarGenero('14','Fantasia')} href="#action7" className='desplegable'>
                 Fantasia
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => cambiarGenero('53')} href="#action8" className='desplegable'>
+              <NavDropdown.Item onClick={() => cambiarGenero('53', 'Thriller')} href="#action8" className='desplegable'>
                 Thriller
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => cambiarGenero('878')} href="#action9" className='desplegable'>
+              <NavDropdown.Item onClick={() => cambiarGenero('878', 'Ciancia-ficción')} href="#action9" className='desplegable'>
                 Ciencia Ficción
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => cambiarGenero('12')}  href="#action10" className='desplegable'>
+              <NavDropdown.Item onClick={() => cambiarGenero('12', 'Aventura')}  href="#action10" className='desplegable'>
                 Aventura
               </NavDropdown.Item>
             </NavDropdown>
